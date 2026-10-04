@@ -4,12 +4,9 @@ class Solution {
         int sum=0;
         for(int i=0;i<n;i++)
         {
+            sum+=mat[i][i];
             for(int j=0;j<n;j++)
             {
-                if (i == j)
-                {
-                    sum+=mat[i][j];
-                }
                 if(i != j)
                 {
                     if((i+j) == (n-1))
