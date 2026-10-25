@@ -1,7 +1,7 @@
 class Solution {
     private int[][] grid;
     private int m, n;
-    private boolean closed(int i, int j) 
+    public boolean closed(int i, int j) 
     {
         if (i < 0 || i >= m || j < 0 || j >= n) 
         {
