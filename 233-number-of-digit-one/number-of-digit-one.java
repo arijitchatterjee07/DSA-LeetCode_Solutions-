@@ -1,13 +1,31 @@
 class Solution {
     public int countDigitOne(int n) {
-    int ones = 0, m = 1, r = 1;
-    while (n > 0) 
-    {
-        ones += (n + 8) / 10 * m + (n % 10 == 1 ? r : 0);
-        r += n % 10 * m;
-        m *= 10;
-        n /= 10;
-    }
-    return ones;
+        long count = 0;
+        long factor = 1;
+        
+        while (factor <= n) 
+        {
+            long higher = n / (factor * 10);
+            long current = (n / factor) % 10;
+            long lower = n % factor;
+            
+            if (current == 0) 
+            {
+                count += higher * factor;
+            } 
+            else if (current == 1) 
+            {
+                count += higher * factor + (lower + 1);
+            } 
+            else 
+            
+            {
+                count += (higher + 1) * factor;
+            }
+            
+            factor *= 10;
+        }
+        
+        return (int) count;
     }
 }
