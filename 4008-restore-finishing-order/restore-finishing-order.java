@@ -1,17 +1,18 @@
 class Solution {
     public int[] recoverOrder(int[] order, int[] friends) {
-        List<Integer> result = new ArrayList<>();
-        for (int id : order) 
+
+        int[] ans = new int[friends.length];
+        int index = 0;
+        for(int i = 0; i < order.length; i++)
         {
-            for (int f : friends) 
+            int element = order[i];
+            for(int j = 0; j < friends.length; j++)
             {
-                if (id == f) 
-                {
-                    result.add(f);
-                    break;
+                if(element == friends[j]){
+                    ans[index++] = element;
                 }
             }
         }
-        return result.stream().mapToInt(i -> i).toArray();
+    return ans;
     }
 }
