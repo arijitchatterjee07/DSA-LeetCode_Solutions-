@@ -1,30 +1,25 @@
 class Solution {
     public boolean isPalindrome(String s) {
-        String w="";
-        for (int i=0;i<s.length();i++)
+        s = s.toLowerCase();
+        String x = "";
+        for (int i = 0; i < s.length(); i++) 
         {
-            if (s.charAt(i) != ' ') 
+            char c = s.charAt(i);
+            if ((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) 
             {
-                if (Character.isLetterOrDigit(s.charAt(i)))
-                {
-                    w += s.charAt(i);
-                }
+                x += c;
             }
         }
-        w=w.toLowerCase();
-        String reversed = "";
-        for (int i = w.length() - 1; i >= 0; i--) 
+        int i = 0, j = x.length() - 1;
+        while (i < j) 
         {
-            reversed += w.charAt(i); 
+            if (x.charAt(i) != x.charAt(j)) 
+            {
+                return false;
+            }
+            i++;
+            j--;
         }
-        if (w.equals(reversed))
-        {
-            return true;
-        }
-        else
-        {
-
-            return false;
-        }
+        return true;
     }
 }
