@@ -1,38 +1,33 @@
+
 class Solution {
     public List<Integer> luckyNumbers(int[][] matrix) {
-        int m = matrix.length;
-        int n = matrix[0].length;
-        List<Integer> minRow = new ArrayList<>();
-        List<Integer> maxCol = new ArrayList<>();
-        for(int i=0;i<m;i++)
+        List<Integer> ans = new ArrayList<>();
+        for (int i = 0; i < matrix.length; i++) 
         {
-            int min=Integer.MAX_VALUE;
-            for(int j=0;j<n;j++)
+            int min = matrix[i][0];
+            int col = 0;
+            for (int j = 1; j < matrix[0].length; j++) 
             {
-                min = Math.min(min,matrix[i][j]);
-            }
-            minRow.add(min);
-        }
-        for(int i=0;i<n;i++)
-        {
-            int max = Integer.MIN_VALUE;
-            for(int j=0;j<m;j++)
-            {
-                max = Math.max(matrix[j][i],max);
-            }
-            maxCol.add(max);
-        }
-        List<Integer> result =new ArrayList<>();
-        for(int i=0;i<m;i++)
-        {
-            for(int j=0;j<n;j++)
-            {
-                if(matrix[i][j]==minRow.get(i) && matrix[i][j]==maxCol.get(j))
+                if (matrix[i][j] < min) 
                 {
-                    result.add(matrix[i][j]);
+                    min = matrix[i][j];
+                    col = j;
                 }
             }
+            boolean lucky = true;
+            for (int k = 0; k < matrix.length; k++) 
+            {
+                if (matrix[k][col] > min) 
+                {
+                    lucky = false;
+                    break;
+                }
+            }
+            if (lucky) 
+            {
+                ans.add(min);
+            }
         }
-    return result;
+        return ans;
     }
 }
