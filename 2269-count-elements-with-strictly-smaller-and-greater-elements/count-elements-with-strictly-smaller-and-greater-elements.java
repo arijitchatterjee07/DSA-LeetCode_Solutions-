@@ -1,12 +1,26 @@
 class Solution {
     public int countElements(int[] nums) {
-        Arrays.sort(nums);
-        int k = 0;
-        for(int i=1;i< nums.length-1;i++) 
+        int c=0;
+        int min=nums[0];
+        int max=nums[0];
+        for(int i=0;i<nums.length;i++)
         {
-            if(nums[i] > nums[0] && nums[i] < nums[nums.length-1]) 
-            k++;
+            if(nums[i]<min)
+            {
+                min=nums[i];
+            }
+            else if(nums[i]>max)
+            {
+                max=nums[i];
+            }
         }
-        return k;
+        for(int i=0;i<nums.length;i++)
+        {
+            if(nums[i]>min && nums[i]<max)
+            {
+                c++;
+            }
+        }
+        return c;
     }
 }
