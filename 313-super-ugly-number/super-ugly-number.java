@@ -1,23 +1,25 @@
 class Solution {
     public int nthSuperUglyNumber(int n, int[] primes) {
-        int[] ugly = new int[n];
-        int[] idx = new int[primes.length];
+        int len = primes.length;
+        int[] pointer = new int[len];
+        long[] ugly = new long[n];
         ugly[0] = 1;
-        
         for (int i = 1; i < n; i++) {
-            ugly[i] = Integer.MAX_VALUE;
-            for (int j = 0; j < primes.length; j++) {
-                // Ensure idx[j] is within bounds before accessing ugly[idx[j]]
-                if (idx[j] < n) {
-                    ugly[i] = Math.min(ugly[i], primes[j] * ugly[idx[j]]);
+            long min = Long.MAX_VALUE;
+            for (int j = 0; j < len; j++) {
+                long value = ugly[pointer[j]] * primes[j];
+
+                if (value < min) {
+                    min = value;
                 }
             }
-            for (int j = 0; j < primes.length; j++) {
-                while (idx[j] < n && primes[j] * ugly[idx[j]] <= ugly[i]) {
-                    idx[j]++;
+            ugly[i] = min;
+            for (int j = 0; j < len; j++) {
+                if (ugly[pointer[j]] * primes[j] == min) {
+                    pointer[j]++;
                 }
             }
         }
-        return ugly[n - 1];
+        return (int) ugly[n - 1];
     }
 }
