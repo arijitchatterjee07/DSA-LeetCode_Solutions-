@@ -1,10 +1,9 @@
-import java.util.*;
 class Solution {
     public boolean containsDuplicate(int[] nums) {
         Arrays.sort(nums);
-        for (int i = 1; i < nums.length; i++) 
+        for (int i=0,j=1;j<nums.length;i++,j++) 
         {
-            if (nums[i] == nums[i-1]) 
+            if (nums[i] == nums[j]) 
             {
                 return true;
             }
