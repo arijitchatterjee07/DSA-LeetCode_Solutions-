@@ -1,32 +1,29 @@
-import java.util.HashSet;
-import java.util.Set;
-
-class Solution {
+public class Solution {
     public int[] findIntersectionValues(int[] nums1, int[] nums2) {
-        Set<Integer> set1 = new HashSet<>();
-        Set<Integer> set2 = new HashSet<>();
-
-        for (int num : nums1) {
-            set1.add(num);
+        HashSet<Integer> hs1 = new HashSet<>();
+        HashSet<Integer> hs2 = new HashSet<>();
+        for (int num:nums1) 
+        {
+            hs1.add(num);
         }
-        for (int num : nums2) {
-            set2.add(num);
+        for (int num:nums2) {
+            hs2.add(num);
         }
-
-        int answer1 = 0;
-        for (int num : nums1) {
-            if (set2.contains(num)) {
-                answer1++;
+        int count1=0;
+        for (int num:nums1) 
+        {
+            if (hs2.contains(num)) 
+            {
+                count1++;
             }
         }
-
-        int answer2 = 0;
-        for (int num : nums2) {
-            if (set1.contains(num)) {
-                answer2++;
+        int count2=0;
+        for (int num:nums2) {
+            if (hs1.contains(num)) 
+            {
+                count2++;
             }
-        }
-
-        return new int[]{answer1, answer2};
+        } 
+        return new int[]{count1, count2};
     }
 }
